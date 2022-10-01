@@ -1,0 +1,31 @@
+1. check for what is a linked llist and how to create it
+2. check on what is a doubly linked list and how to use it
+3. check what is a node and how to go from one node to another
+4. struct used to create a linked list and compare the three linked list types 1. singular 2.doubly
+																			   3. circular
+
+check these basic linked list operations and who its created and try to recreate it from the
+libft file:
+(a. Traversal - access each element of the linked list
+b. Insertion - adds a new element to the linked list
+c. Deletion - removes the existing elements
+d. Search - find a node in the linked list
+e. Sort - sort the nodes of the linked list)
+
+6. create 2 stack (linked lists) for implementation
+7. and create the operation from the push_swap document using the created  linked list
+
+
+
+:) Good luck
+
+website:
+1. https://www.youtube.com/watch?v=-gpsiMiEOHU
+
+2. https://www.geeksforgeeks.org/what-is-linked-list/
+
+3. https://www.programiz.com/dsa/linked-list-operations
+
+4. https://www.geeksforgeeks.org/doubly-linked-list/
+
+5. https://www.programiz.com/dsa/doubly-linked-list
