@@ -6,14 +6,22 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:57:47 by salmazro          #+#    #+#             */
-/*   Updated: 2022/10/14 20:21:36 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:41:24 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// print error
+void	ft_error(char *error)
+{
+	while (*error)
+		write(1, error++, 1);
+	exit(1);
+}
+
 // check int max
-void ft_check_int(const char *str,unsigned long num, int sign)
+void	ft_check_int(const char *str, unsigned long num, int sign)
 {
 	if (num == 2147483647 && sign == 1)
 	{
@@ -33,10 +41,10 @@ void ft_check_int(const char *str,unsigned long num, int sign)
 }
 
 // atoi function
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	unsigned long num;
-	int sign;
+	unsigned long	num;
+	int				sign;
 
 	num = 0;
 	sign = 1;
@@ -58,16 +66,16 @@ int ft_atoi(const char *str)
 }
 
 // double checker : to check if there is any duplicate numbers
-void ft_check_doub(t_node *p, int x)
+void	ft_check_doub(t_node *p, int x)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	temp = p;
 	while (temp != NULL)
 	{
 		if (temp->data == x)
 		{
-			ft_putendl_fd("duplicate is found",2);
+			ft_error("duplicate is found");
 			exit(1);
 		}
 		temp = temp->next;

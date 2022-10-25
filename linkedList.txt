@@ -29,3 +29,76 @@ website:
 4. https://www.geeksforgeeks.org/doubly-linked-list/
 
 5. https://www.programiz.com/dsa/doubly-linked-list
+
+Test cases for int main()
+{
+	** test sa operation
+	printf("before\n");
+	ft_lstdisplay(lst);
+	sa(lst);
+	printf("after\n");
+	ft_lstdisplay(lst);
+
+	** test ra operation
+	printf("before:\n");
+	ft_lstdisplay(lst);
+	ra(lst);
+	printf("after:\n");
+	ft_lstdisplay(lst);
+
+	** test rra operation
+	printf("before:\n");
+	ft_lstdisplay(lst);
+	rra(lst);
+	printf("after:\n");
+	ft_lstdisplay(lst);
+
+	** sort three numbers
+	printf("sort 3 output:\n");
+	sort_three(lst);
+	ft_lstdisplay(lst);
+
+	** test pb operation
+	printf("------------first-----------\n");
+	pb(&lst, &lst2);
+	printf("lst 1 -> \n");
+	ft_lstdisplay(lst);
+	printf("lst 2 -> \n");
+	ft_lstdisplay(lst2);
+	printf("------------second-----------\n");
+	pb(&lst, &lst2);
+	printf("lst 1 -> \n");
+	ft_lstdisplay(lst);
+	printf("lst 2 -> \n");
+	ft_lstdisplay(lst2);
+
+_____________________________________________________
+
+	** test sb operation
+	printf("before\n");
+	ft_lstdisplay(lst);
+	sb(lst);
+	printf("after\n");
+	ft_lstdisplay(lst);
+
+	** test rb operation
+	printf("before\n");
+	ft_lstdisplay(lst2);
+	sb(lst2);
+	printf("after\n");
+	ft_lstdisplay(lst2);
+
+	** test rra operation
+	printf("before:\n");
+	ft_lstdisplay(lst2);
+	rrb(lst2);
+	printf("after:\n");
+	ft_lstdisplay(lst2);
+
+	** sort three numbers
+	printf("sort 3 output:\n");
+	sort_three(lst2);
+	ft_lstdisplay(lst2);
+	** use ./a.out 4 2 3 1
+
+}
