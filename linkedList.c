@@ -6,7 +6,7 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:39:23 by salmazro          #+#    #+#             */
-/*   Updated: 2022/10/24 23:06:24 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:56:48 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,15 @@ t_node	*ft_lstnew(int *data)
 }
 
 // add element in the beginning of list
-void	ft_lstadd_front(t_node **lst, t_node *new)
+void	ft_lstadd_front(t_node **head, int content)
 {
-	if (new)
-	{
-		if (lst)
-		{
-			new->next = *lst;
-			*lst = new;
-		}
-		else
-			*lst = new;
-	}
+	t_node	*tmp;
+
+	tmp = malloc(sizeof(t_node));
+	tmp->data = content;
+	tmp->next = NULL;
+	tmp->next = *head;
+	(*head) = tmp;
 }
 
 // add element in the end of list

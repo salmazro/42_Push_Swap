@@ -6,53 +6,68 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:41:16 by salmazro          #+#    #+#             */
-/*   Updated: 2022/10/25 23:16:43 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:42:57 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // sb -> swap first 2 element
-void	sb(t_node *lst2)
+void	sb(t_node *b)
 {
-	ft_swap(&lst2->data, &lst2->next->data);
+	ft_swap(&b->data, &b->next->data);
 	write (1, "sb\n", 3);
 }
 
 // rb -> first element become last element
-void	rb(t_node *lst2)
+void	rb(t_node *b)
 {
-	while (lst2->next != NULL)
+	t_node	*temp;
+
+	temp = b;
+	while (b->next != NULL)
 	{
-		ft_swap(&lst2->data, &lst2->next->data);
-		lst2 = lst2->next;
+		ft_swap(&b->data, &b->next->data);
+		b = b->next;
 	}
+	set_indexes(temp, NULL);
 	write (1, "rb\n", 3);
 }
 
 // rrb -> last element become first element
-void	rrb(t_node *lst2)
+void	rrb(t_node *b)
 {
 	t_node	*last_elem;
+	t_node	*temp;
 
-	while (lst2->next != NULL)
+	temp = b;
+	while (b->next != NULL)
 	{
-		last_elem = ft_lstlast(lst2);
-		ft_swap(&last_elem->data, &lst2->data);
-		lst2 = lst2->next;
+		last_elem = ft_lstlast(b);
+		ft_swap(&last_elem->data, &b->data);
+		b = b->next;
 	}
+	set_indexes(temp, NULL);
 	write (1, "rrb\n", 4);
 }
 
-//pa -> push the top element from stack b to stack a
-void	pa(t_node **b, t_node **a)
+//pb -> push the top element from stack a to stack b
+void	pb(t_node **a, t_node **b)
 {
-	t_node	*temp;
+	int		tmp;
+	t_node	*tmp_stack;
 
-	temp = *b;
-	ft_lstadd_front(a, ft_lstnew(&(*b)->data));
-	*b = (*b)->next;
-	free(temp);
-	temp = NULL;
-	write (1, "pb\n", 3);
+	tmp_stack = NULL;
+	if (!(*a))
+	{
+		printf("Nothing to push to b\n");
+		exit(1);
+	}
+	tmp = (*a)->data;
+	tmp_stack = (*a)->next;
+	free(*a);
+	*a = tmp_stack;
+	ft_lstadd_front(b, tmp);
+	set_indexes(*b, *a);
+	write(1, "pb\n", 3);
 }

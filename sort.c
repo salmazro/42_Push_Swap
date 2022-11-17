@@ -6,40 +6,92 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:30:51 by salmazro          #+#    #+#             */
-/*   Updated: 2022/10/21 19:29:20 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:37:31 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sort_three(t_node *lst)
+// sort two numbers
+void	sort_two(t_node *lst)
 {
-	int n1;
-	int n2;
-	int n3;
+	if (lst->data > lst->next->data)
+		sa(lst);
+}
+
+// sort three numbers using all cases
+void	sort_three(t_node *lst)
+{
+	int	n1;
+	int	n2;
+	int	n3;
 
 	n1 = lst->data;
 	n2 = lst->next->data;
 	n3 = lst->next->next->data;
-	// 1	3	2
 	if (n1 < n2 && n1 < n3 && n2 > n3)
 	{
 		sa(lst);
 		ra(lst);
 	}
-	// 2	1	3
 	else if (n1 > n2 && n1 < n3 && n2 < n3)
 		sa(lst);
-	// 2	3	1
 	else if (n1 < n2 && n1 > n3 && n2 > n3)
 		rra(lst);
-	// 3	1	2
 	else if (n1 > n2 && n1 > n3 && n2 < n3)
 		ra(lst);
-	// 3	2	1
 	else if (n1 > n2 && n1 > n3 && n2 > n3)
 	{
 		sa(lst);
 		rra(lst);
 	}
+}
+
+// sort four using push and sort three
+void	sort_four(t_node **a, t_node **b)
+{
+	rotate_a_up(*a, return_smallest(*a));
+	pb(a, b);
+	sort_three(*a);
+	pa(b, a);
+}
+
+// sort five using push and sort four
+void	sort_five(t_node **a, t_node **b)
+{
+	if (return_index(return_smallest(*a), *a) <= 3)
+		rotate_a_up(*a, return_smallest(*a));
+	else
+		rotate_a_down(*a, return_smallest(*a));
+	pb(a, b);
+	sort_four(a, b);
+	pa(b, a);
+}
+
+// sort big number 
+void	sort_big(t_all *all)
+{
+	int			i;
+	int			d;
+
+	d = 0;
+	i = 0;
+	while (ft_lstsize(*all->stack_a) != 0 && i < all->size / all->chunk_size)
+	{
+		if ((*all->stack_a)->data < all->indecies[i])
+		{
+			pb(all->stack_a, all->stack_b);
+			d++;
+		}
+		else
+			ra(*all->stack_a);
+		if (d == all->chunk_size)
+		{
+			i++;
+			d = 0;
+		}
+	}
+	while (ft_lstsize(*all->stack_a) != 0)
+		pb(all->stack_a, all->stack_b);
+	sort_b(all);
 }
