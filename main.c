@@ -6,63 +6,65 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:57:45 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 22:52:07 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:20:40 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	print_stuff(t_all *all, int flag)
-// {
-// 	int	i;
+// this function checks the parsing part
+void	parse(t_node **a, t_all *all, int ac, char **av)
+{
+	char	*c;
+	int		data;
+	int		i;
 
-// 	i = -1;
-// 	if (flag == STACK_A)
-// 		ft_lstdisplay(*all->stack_a);
-// 	else if (flag == SORTED)
-// 	{
-// 		while (++i < all->size)
-// 			printf("sorted[%d] is: %d\n", i, all->sorted[i]);
-// 	}
-// 	else if (flag == STACK_B)
-// 		ft_lstdisplay(*all->stack_b);
-// 	else if (flag == CHUNK_SIZE)
-// 		printf("chunk_size is %d\n", all->chunk_size);
-// 	else if (flag == INDECIES)
-// 	{
-// 		while (++i < all->size / all->chunk_size)
-// 			printf("indecie of %d is %d\n",i , all->indecies[i]);
-// 	}
-// 	else if (flag == SIZE)
-// 		printf("size is %d\n", all->size);
-// 	else if (flag == LARGEST_A)
-// 		printf("Largest number in a is %d\n", return_biggest(*all->stack_a));
-// 	else if (flag == LARGEST_B)
-// 		printf("Largest number in b is %d\n", return_biggest(*all->stack_b));
-// }
+	c = NULL;
+	data = 0;
+	while (all->i < ac)
+	{
+		c = ft_strjoin(c, " ");
+		c = ft_strjoin(c, av[all->i]);
+		all->i++;
+	}
+	i = count_words(c, ' ');
+	all->split = ft_split(c, ' ');
+	free (c);
+	all->i = 0;
+	while (all->i < i)
+	{
+		data = ft_atoi(all->split[all->i], all, *a);
+		ft_check_doub(*a, data, all);
+		ft_order(all->split, all, a);
+		ft_lstadd_back(a, ft_lstnew(&data));
+		all->i++;
+	}
+}
+
+// this function is used to initialize variables for int main
+void	init_struct(t_all *all)
+{
+	all->sorted = 0;
+	all->indecies = 0;
+	all->size = 0;
+	all->chunk_size = 0;
+	all->i = 1;
+	all->stack_a = NULL;
+	all->split = NULL;
+	all->stack_b = NULL;
+}
 
 int	main(int ac, char **av)
 {
-	int		data;
-	int		*sorted;
 	t_node	*a;
 	t_node	*b;
 	t_all	all;
 
-	all.i = 1;
 	a = NULL;
 	b = NULL;
-	sorted = NULL;
-	while (all.i < ac)
-	{
-		data = ft_atoi(av[all.i]);
-		ft_check_doub(a, data);
-		ft_lstadd_back(&a, ft_lstnew(&data));
-		all.i++;
-	}
+	init_struct(&all);
+	parse(&a, &all, ac, av);
 	set_indexes(a, b);
-	parse_struct(&all, &a, &b, sorted);
+	parse_struct(&all, &a, &b);
 	parse_algo(&all);
-	free(all.indecies);
-	free(all.sorted);
 }

@@ -6,17 +6,18 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 22:06:46 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 22:25:30 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:39:26 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	parse_struct(t_all *all, t_node **a, t_node **b, int *array)
+void	parse_struct(t_all *all, t_node **a, t_node **b)
 {
 	all->size = ft_lstsize(*a);
-	array = malloc(all->size * sizeof(int));
-	all->sorted = array;
+	all->sorted = malloc(all->size * sizeof(int));
+	if (!all->sorted)
+		return ;
 	all->stack_a = a;
 	all->stack_b = b;
 	parse_sorted(all);
@@ -57,7 +58,6 @@ void	selection_sort(int array[], int size)
 			min_idx = i;
 			i++;
 		}
-
 		ft_swap(&array[min_idx], &array[step]);
 		step++;
 	}
@@ -77,4 +77,22 @@ void	parse_indecies(t_all *all)
 		i += all->chunk_size;
 		d++;
 	}
+}
+
+int	return_chunk_size(t_all *all)
+{
+	if (all->size > 5 && all->size < 30)
+		return (2);
+	else if (all->size >= 30 && all->size < 50)
+		return (4);
+	else if (all->size >= 50 && all->size < 80)
+		return (6);
+	else if (all->size >= 80 && all->size < 200)
+		return (8);
+	else if (all->size >= 200 && all->size < 500)
+		return (12);
+	else if (all->size >= 500 && all->size < 800)
+		return (16);
+	else
+		return (20);
 }

@@ -6,7 +6,7 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:39:23 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 21:56:48 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:44:08 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,4 @@ t_node	*ft_lstlast(t_node *lst)
 	while (elem->next != NULL)
 		elem = elem->next;
 	return (elem);
-}
-
-// display the list
-void	ft_lstdisplay(t_node *lst)
-{
-	while (lst != NULL)
-	{
-		printf("%d\n", lst->data);
-		lst = lst->next;
-	}
 }

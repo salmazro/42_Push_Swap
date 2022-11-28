@@ -6,7 +6,7 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:41:16 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 22:42:57 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/23 21:41:44 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	pb(t_node **a, t_node **b)
 	tmp_stack = NULL;
 	if (!(*a))
 	{
-		printf("Nothing to push to b\n");
+		write(2, "Nothing to push to b\n", 22);
 		exit(1);
 	}
 	tmp = (*a)->data;

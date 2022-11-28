@@ -6,7 +6,7 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 21:59:02 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 19:28:05 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:34:39 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,31 +59,28 @@ int	return_index(int data, t_node *lst)
 	return (-1);
 }
 
-// get the smallest number in list
-int	return_smallest(t_node *lst)
+// get the index of the element
+int	return_last_index(int data, t_node *lst)
 {
-	int	min;
+	int	last;
 
-	min = INT_MAX;
 	while (lst != NULL)
 	{
-		if (min > lst->data)
-			min = lst->data;
+		if (lst->data <= data)
+			last = lst->index;
 		lst = lst->next;
 	}
-	return (min);
+	return (last);
 }
 
-int	return_biggest(t_node *lst)
+// get the index of the element
+int	return_first_index(int data, t_node *lst)
 {
-	int	max;
-
-	max = INT_MIN;
 	while (lst != NULL)
 	{
-		if (max < lst->data)
-			max = lst->data;
+		if (lst->data <= data)
+			return (lst->index);
 		lst = lst->next;
 	}
-	return (max);
+	return (-1);
 }

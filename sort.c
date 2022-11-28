@@ -6,7 +6,7 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:30:51 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 22:37:31 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:26:40 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,22 @@ void	sort_five(t_node **a, t_node **b)
 	pa(b, a);
 }
 
-// sort big number 
-void	sort_big(t_all *all)
+// sort big number
+void	sort_big(t_all *all, int d, int tmp, int tmp2)
 {
-	int			i;
-	int			d;
-
-	d = 0;
-	i = 0;
-	while (ft_lstsize(*all->stack_a) != 0 && i < all->size / all->chunk_size)
+	while (ft_lstsize(*all->stack_a) != 0 && tmp < all->size)
 	{
-		if ((*all->stack_a)->data < all->indecies[i])
-		{
-			pb(all->stack_a, all->stack_b);
-			d++;
-		}
-		else
-			ra(*all->stack_a);
 		if (d == all->chunk_size)
 		{
-			i++;
 			d = 0;
+			tmp += tmp2;
+			if (tmp > all->size)
+				break ;
 		}
+		if (ft_lstsize(*all->stack_a) <= 100)
+			sort_big_norm(all, &d, &tmp, 15);
+		else if (ft_lstsize(*all->stack_a) <= 500)
+			sort_big_norm(all, &d, &tmp, 30);
 	}
 	while (ft_lstsize(*all->stack_a) != 0)
 		pb(all->stack_a, all->stack_b);

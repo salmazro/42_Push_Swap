@@ -6,7 +6,7 @@
 /*   By: salmazro <salmazro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 20:35:18 by salmazro          #+#    #+#             */
-/*   Updated: 2022/11/17 22:44:12 by salmazro         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:20:13 by salmazro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	pa(t_node **a, t_node **b)
 	tmp_stack = NULL;
 	if (!(*b))
 	{
-		printf("Nothing to push to a\n");
+		write(2, "Nothing to push to a\n", 22);
 		exit(1);
 	}
 	tmp = (*b)->data;
@@ -80,5 +80,4 @@ void	pa(t_node **a, t_node **b)
 	ft_lstadd_front(a, tmp);
 	set_indexes(*a, *b);
 	write(1, "pa\n", 3);
-
 }
